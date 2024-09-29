@@ -8,6 +8,7 @@
     "start": "node server.js" 
   },
   "dependencies": {
+    "http2-wrapper": "2.2.1",
     "fastify": "^4.28.1",
     "axios": "^1.7.7",
     "lodash": "^4.17.21",
