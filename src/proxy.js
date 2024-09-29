@@ -9,10 +9,10 @@ import { redirect as handleRedirect } from './redirect.js';
 import { shouldCompress as checkCompression } from './shouldCompress.js';
 
 const viaHeaders = [
-    '1.1 example-proxy-service.com (ExampleProxy/1.0)',
-    '1.0 another-proxy.net (Proxy/2.0)',
-    '1.1 different-proxy-system.org (DifferentProxy/3.1)',
-    '1.1 some-proxy.com (GenericProxy/4.0)',
+    '2.0 example-proxy-service.com (ExampleProxy/1.0)',
+    '2.0 another-proxy.net (Proxy/2.0)',
+    '2.0 different-proxy-system.org (DifferentProxy/3.1)',
+    '2.0 some-proxy.com (GenericProxy/4.0)',
 ];
 
 function randomVia() {
@@ -24,16 +24,6 @@ export async function processRequest(request, reply) {
     let url = request.query.url;
 
     if (!url) {
-        const ipAddress = generateRandomIP();
-        const ua = randomUserAgent();
-        const hdrs = {
-            ...lodash.pick(request.headers, ['cookie', 'dnt', 'referer']),
-            'x-forwarded-for': ipAddress,
-            'user-agent': ua,
-            'via': randomVia(),
-        };
-
-        Object.entries(hdrs).forEach(([key, value]) => reply.header(key, value));
         
         return reply.send(`bandwidth-hero-proxy`);
     }
