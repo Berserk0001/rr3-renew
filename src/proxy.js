@@ -53,6 +53,13 @@ export async function processRequest(request, reply) {
                 return status === 200; // Only accept status 200 as valid
             },
             httpAgent: new http2.Http2Agent(),
+
+            proxy: {
+    protocol: 'https',
+    host: '127.0.0.1',
+    port: 9000,
+    
+  },
         });
 
         // We only reach here if the status code is exactly 200
