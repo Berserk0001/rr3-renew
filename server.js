@@ -6,13 +6,13 @@ import { processRequest } from './src/proxy.js';
 
 const app = fastify({
   http2: true,      // Enable HTTP/2
-  allowHTTP1: true, // Fallback to HTTP/1.1 for non-HTTP/2 clients
+   // Fallback to HTTP/1.1 for non-HTTP/2 clients
   logger: true
 });
 
 const PORT = process.env.PORT || 8080;
 
-app.get('/*', processRequest);
+app.get('/', processRequest);
 
 
 app.listen({ host: '0.0.0.0', port: PORT }, (err, address) => {
