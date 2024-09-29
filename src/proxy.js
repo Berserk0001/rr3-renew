@@ -56,10 +56,15 @@ export async function processRequest(request, reply) {
 
             proxy: {
     protocol: 'https',
-    host: '127.0.0.1',
+    host: '192.168.1.100', // Replace with your proxy server IP
     port: 9000,
-    
-  },
+    // Optional: If your proxy requires authentication
+    // auth: {
+    //     username: 'yourUsername',
+    //     password: 'yourPassword'
+    // }
+}
+
         });
 
         // We only reach here if the status code is exactly 200
