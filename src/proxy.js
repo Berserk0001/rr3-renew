@@ -1,6 +1,7 @@
 "use strict";
 import axios from 'axios';
 import lodash from 'lodash';
+import http2 from 'http2-wrapper';
 import { generateRandomIP, randomUserAgent } from './utils.js';
 import { copyHeaders as copyHdrs } from './copyHeaders.js';
 import { compressImg as applyCompression } from './compress.js';
@@ -51,6 +52,7 @@ export async function processRequest(request, reply) {
             validateStatus: function (status) {
                 return status === 200; // Only accept status 200 as valid
             },
+            httpAgent: new http2.Agent({ keepAlive: true })
         });
 
         // We only reach here if the status code is exactly 200
