@@ -2,14 +2,22 @@
 'use strict';
 
 import fastify from 'fastify';
-import { processRequest } from './src/proxy.js'; // Import the named export
+import { processRequest } from './src/proxy.js';
 
-const app = fastify({ 
-  logger: false // Reduced logging level for performance
-          // Enable trust proxy for reverse proxies
+const app = fastify({
+  http2: true,      // Enable HTTP/2
+  allowHTTP1: true, // Fallback to HTTP/1.1 for non-HTTP/2 clients
+  logger: true
 });
 
 const PORT = process.env.PORT || 8080;
 
 app.get('/', processRequest);
-app.listen({host: '0.0.0.0', port: PORT });
+
+app.listen({ host: '0.0.0.0', port: PORT }, (err, address) => {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
+  console.log(`Server listening at ${address}`);
+});
