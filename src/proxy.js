@@ -52,7 +52,7 @@ export async function processRequest(request, reply) {
             validateStatus: function (status) {
                 return status === 200; // Only accept status 200 as valid
             },
-            httpAgent: new http2.Agent({ keepAlive: true })
+            httpAgent: new http2.Http2Agent(),
         });
 
         // We only reach here if the status code is exactly 200
