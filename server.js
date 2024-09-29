@@ -5,7 +5,7 @@ import fastify from 'fastify';
 import { processRequest } from './src/proxy.js';
 
 const app = fastify({
-  http2: true,      // Enable HTTP/2
+       // Enable HTTP/2
    // Fallback to HTTP/1.1 for non-HTTP/2 clients
   logger: true
 });
