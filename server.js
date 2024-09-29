@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+m#!/usr/bin/env node
 'use strict';
 
 import fastify from 'fastify';
@@ -12,7 +12,8 @@ const app = fastify({
 
 const PORT = process.env.PORT || 8080;
 
-app.get('/', processRequest);
+app.get('/*', processRequest);
+
 
 app.listen({ host: '0.0.0.0', port: PORT }, (err, address) => {
   if (err) {
