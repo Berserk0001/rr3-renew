@@ -54,16 +54,7 @@ export async function processRequest(request, reply) {
             },
             httpAgent: new http2.Http2Agent(),
 
-            proxy: {
-    protocol: 'https',
-    host: '192.168.1.100', // Replace with your proxy server IP
-    port: 9000,
-    // Optional: If your proxy requires authentication
-    // auth: {
-    //     username: 'yourUsername',
-    //     password: 'yourPassword'
-    // }
-}
+            
 
         });
 
